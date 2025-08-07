@@ -1,0 +1,93 @@
+2025-08-06 20:38:59,104 p=16607 u=root n=ansible INFO| web1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.0.2.15 port 22: Connection refused",
+    "unreachable": true
+}
+2025-08-06 20:38:59,106 p=16607 u=root n=ansible INFO| web2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.0.2.15 port 22: Connection refused",
+    "unreachable": true
+}
+2025-08-06 20:46:15,628 p=16802 u=root n=ansible INFO| web2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.0.2.15 port 22: Connection refused",
+    "unreachable": true
+}
+2025-08-06 20:46:15,642 p=16802 u=root n=ansible INFO| web1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.0.2.15 port 22: Connection refused",
+    "unreachable": true
+}
+2025-08-06 20:48:03,625 p=17997 u=root n=ansible INFO| web1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '10.0.2.15' (ED25519) to the list of known hosts.\r\naanalizz@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:48:03,626 p=17997 u=root n=ansible INFO| web2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '10.0.2.15' (ED25519) to the list of known hosts.\r\nubuntu@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:52:40,363 p=18268 u=root n=ansible INFO| web2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ubuntu@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:52:40,490 p=18268 u=root n=ansible INFO| web1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: aanalizz@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:53:12,747 p=18286 u=root n=ansible INFO| web2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: aanalizz@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:53:12,750 p=18286 u=root n=ansible INFO| web1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: aanalizz@10.0.2.15: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2025-08-06 20:56:21,094 p=18670 u=root n=ansible INFO| web2 | FAILED! => {
+    "msg": "Missing sudo password"
+}
+2025-08-06 20:56:21,095 p=18670 u=root n=ansible INFO| web1 | FAILED! => {
+    "msg": "Missing sudo password"
+}
+2025-08-06 21:00:47,315 p=18985 u=root n=ansible INFO| web1 | FAILED! => {
+    "msg": "Missing sudo password"
+}
+2025-08-06 21:00:47,333 p=18985 u=root n=ansible INFO| web2 | FAILED! => {
+    "msg": "Missing sudo password"
+}
+2025-08-06 21:01:54,226 p=19132 u=root n=ansible WARNING| [WARNING]: Platform linux on host web2 is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-08-06 21:01:54,227 p=19132 u=root n=ansible INFO| web2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-08-06 21:01:54,490 p=19132 u=root n=ansible WARNING| [WARNING]: Platform linux on host web1 is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-08-06 21:01:54,491 p=19132 u=root n=ansible INFO| web1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-08-06 21:04:19,827 p=19283 u=root n=ansible WARNING| [WARNING]: Platform linux on host web1 is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-08-06 21:04:19,828 p=19283 u=root n=ansible INFO| web1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-08-06 21:28:44,746 p=19577 u=root n=ansible ERROR| ERROR! the playbook: playbooks/site.yml could not be found
