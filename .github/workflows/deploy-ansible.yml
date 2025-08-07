@@ -1,0 +1,75 @@
+name: Deploy with Ansible
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+
+jobs:
+  ansible-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Ansible
+      run: |
+        python -m pip install --upgrade pip
+        pip install ansible
+        pip install ansible-core
+        
+    - name: Install Ansible collections (if needed)
+      run: |
+        ansible-galaxy collection install community.general
+        ansible-galaxy collection install ansible.posix
+        
+    - name: Setup SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+        
+    - name: Create Ansible inventory
+      run: |
+        cat > inventory.ini << EOF
+        [servers]
+        ${{ secrets.HOST }} ansible_user=${{ secrets.SSH_USER }} ansible_ssh_private_key_file=~/.ssh/id_rsa
+        EOF
+        
+    - name: Run Ansible syntax check
+      run: |
+        ansible-playbook --syntax-check -i inventory.ini playbook.yml
+        
+    - name: Run Ansible playbook (dry-run)
+      run: |
+        ansible-playbook -i inventory.ini playbook.yml --check --diff
+        
+    - name: Run Ansible playbook
+      if: github.event_name != 'pull_request'
+      run: |
+        ansible-playbook -i inventory.ini playbook.yml
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: False
+        
+    - name: Clean up SSH key
+      if: always()
+      run: |
+        rm -f ~/.ssh/id_rsa
